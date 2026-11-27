@@ -1,0 +1,1 @@
+PyECR analyzes electrical conductivity relaxation (ECR) traces acquired after a change in gas composition. It fits single and twofold relaxation, displays parameter sensitivity and conditional error maps, and resolves characteristic time scales through DCT. It also supports simulation, multiple-curve analysis and export. This guide covers the Windows source release.
