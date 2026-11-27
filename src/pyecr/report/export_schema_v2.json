@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "version": "pyecr-export/2.0.0",
+  "snapshot_schema": "preserve model schema 1/2; optional export_context",
+  "indices": "zero_based_original_raw_index",
+  "presets": ["review", "excel", "publication"],
+  "float_precision": "roundtrip_float64_17g",
+  "csv_text_encoding": "excel_literal_escape_v1",
+  "missing": "null or empty with reason/status; never numeric zero",
+  "tables": {
+    "RawData": {"columns":["original_raw_index","source_row_number","source_row_reason","raw_time","raw_signal","time_unit","signal_unit","source_sha256","retained"], "types":["integer","integer?","text","float","float","text","text","text?","boolean"]},
+    "RowAudit": {"columns":["original_raw_index","processed_index","fit_eligible","row_status","exclusion_reason","step_ids","audit_status"], "types":["integer","integer?","boolean","text","text?","json","text"]},
+    "ProcessedData": {"columns":["processed_index","original_raw_index","time","observed","time_unit","signal_unit","fit_eligible"], "types":["integer","integer","float","float","text","text","boolean"]},
+    "FitCurve": {"columns":["processed_index","original_raw_index","time_s","observed","fitted","residual_observed_minus_fitted","signal_unit","fit_eligible"], "types":["integer","integer","float","float","float","float","text","boolean"]},
+    "Components": {"columns":["processed_index","original_raw_index","time_s","y0","component_1","component_2","shifted_1","shifted_2","X1","X2","X_status","label_1","label_2","label_semantics","signal_unit"], "types":["integer","integer","float","float","float","float","float","float","float?","float?","text","text","text","text","text"]},
+    "Parameters": {"columns":["name","value","unit","role","parameter_space","bound_lower","bound_upper","ci_lower","ci_upper","ci_method","ci_level","ci_scope","ci_conditions","ci_status","reason","fixed_source"], "types":["text","float?","text","text","text?","float?","float?","float?","float?","text","float?","text","json","text","text?","json?"]},
+    "Diagnostics": {"columns":["path","value_json","status","reason"], "types":["text","json","text","text?"]},
+    "History": {"columns":["step_id","operation","parameters","timestamp"], "types":["integer","text","json","text"]},
+    "Metadata": {"columns":["path","value_json","status","reason"], "types":["text","json","text","text?"]},
+    "BatchSummary": {"columns":["record_id","temperature_K","model_id","status","reliable","error","params","parameter_ci","SSE","RMSE","R2","fit_result_sha256"], "types":["text","float?","text","text","boolean?","text?","json","json","float?","float?","float?","text?"]}
+  },
+  "xlsx": {"max_rows":1048576,"max_data_rows_per_sheet":1048575,"precision_digits":15,"max_text_characters":32767,"typed_strings":true,"overflow_status_sheet":"WorkbookStatus"},
+  "figures": {"formats":["png","svg","pdf"],"dpi":[300,600],"grid":"scientific observations; optional separate P70 display grid","component_ci":"not_calibrated_not_exported"},
+  "manifest": ["schema_version","version","preset","options","export_scope","exported_at","captured_at","source","artifacts","tables","xlsx","missing","precision","manifest_sha256"],
+  "ci": "consume captured local covariance Student-t or other explicit method only; no estimation during export"
+}
